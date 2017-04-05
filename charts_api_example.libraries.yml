@@ -1,0 +1,6 @@
+charts_api_examples:
+  version: 1.x
+  js:
+    js/charts_api_example.js: {}
+  dependencies:
+    - charts_highcharts/highcharts

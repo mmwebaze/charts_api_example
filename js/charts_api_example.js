@@ -1,0 +1,2 @@
+console.debug('Michael');
+alert('***************')

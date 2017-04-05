@@ -1,0 +1,7 @@
+name: charts_api_example
+type: module
+description: How to interact with the Charts Api
+core: 8.x
+package: Charts
+dependencies:
+  - Charts
