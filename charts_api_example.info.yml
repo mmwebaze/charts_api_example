@@ -4,4 +4,4 @@ description: How to interact with the Charts Api
 core: 8.x
 package: Charts
 dependencies:
-  - Charts
+  - charts:charts
