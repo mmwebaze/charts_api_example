@@ -18,24 +18,19 @@ class ChartsApiExample extends ControllerBase implements ContainerInjectionInter
   public function display(){
 
     $library = $this->chartSettings['library'];
-    drupal_set_message($library.' --- '.$this->chartSettings['type']);
     $options = [];
     $options['type'] = $this->chartSettings['type'];
     $options['title'] = 'Chart title';
     $options['yaxis_title'] = '';
     $options['yaxis_min'] = '';
     $options['yaxis_max'] = '';
+    //sample data format
     $categories = ["attachUganda","attachKenya","Kenya","Uganda"];
     $seriesData = [
       ["name" => "subaru", "color" => "#0d233a", "type" => null, "data" => [250, 350, 400, 200]],
       ["name" => "Nissan", "color" => "#8bbc21", "type" => "column", "data" => [150, 450, 500, 300]],
       ["name" => "Toyota", "color" => "#910000", "type" => "area",  "data" => [0, 0, 60, 90]]
     ];
-
-    //if ($library == 'google'){
-
-    //}
-
 
     $element = array(
       '#theme' => 'charts_api_example',
