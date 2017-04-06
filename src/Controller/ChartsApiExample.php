@@ -2,7 +2,7 @@
 
 namespace Drupal\charts_api_example\Controller;
 
-use Drupal\charts\Charts\ModuleSelector;
+
 use Drupal\charts\Services\ChartsSettingsService;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -12,7 +12,6 @@ class ChartsApiExample extends ControllerBase implements ContainerInjectionInter
   private $chartSettings;
 
   public function __construct(ChartsSettingsService $chartSettings) {
-    drupal_set_message(json_encode($chartSettings->getChartsSettings()));
     $this->chartSettings = $chartSettings->getChartsSettings();
   }
 
@@ -20,16 +19,32 @@ class ChartsApiExample extends ControllerBase implements ContainerInjectionInter
 
     $library = $this->chartSettings['library'];
     drupal_set_message($library.' --- '.$this->chartSettings['type']);
-
-    if ($library == 'google'){
-      //$moduleSelector = new ModuleSelector($library, $categories, $seriesData, $options, $attachmentDisplayOptions, $variables, $chartId);
-    }
-
-    $element = [
-      '#theme' => 'charts_api_example',
-      '#test_var' => $this->t($library)
+    $options = [];
+    $options['type'] = $this->chartSettings['type'];
+    $options['title'] = 'Chart title';
+    $options['yaxis_title'] = '';
+    $options['yaxis_min'] = '';
+    $options['yaxis_max'] = '';
+    $categories = ["attachUganda","attachKenya","Kenya","Uganda"];
+    $seriesData = [
+      ["name" => "subaru", "color" => "#0d233a", "type" => null, "data" => [250, 350, 400, 200]],
+      ["name" => "Nissan", "color" => "#8bbc21", "type" => "column", "data" => [150, 450, 500, 300]],
+      ["name" => "Toyota", "color" => "#910000", "type" => "area",  "data" => [0, 0, 60, 90]]
     ];
-   // return $element;
+
+    //if ($library == 'google'){
+
+    //}
+
+
+    $element = array(
+      '#theme' => 'charts_api_example',
+      '#library' => $this->t($library),
+      '#categories' => $categories,
+      '#seriesData' => $seriesData,
+      '#options' => $options,
+    );
+    return $element;
   }
   public static function create(ContainerInterface $container){
     return new static(
